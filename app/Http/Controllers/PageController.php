@@ -27,16 +27,18 @@ class PageController extends Controller
     $inlineQueryId = $reqest->id;
     $msg = $reqest->query;
 
+    $photoQuery = [
+      'type'      => 'photo',
+      'id'        => '1',
+      'photo_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpg',
+      'thumb_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpg'
+    ];
+
     $client = new \GuzzleHttp\Client();
 
     $res = $client->request('POST', $host . $token . '/answerInlineQuery', [
       'inline_query_id' => $inlineQueryId,
-      'results' => [
-        'type'      => 'photo',
-        'id'        => '1',
-        'photo_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpg',
-        'thumb_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpg'
-      ]
+      'results' => json_encode($photoQuery)
     ]);
 
     // return $res->getStatusCode();
