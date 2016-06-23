@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use Closure;
+use Config;
 
 class PageController extends Controller
 {
@@ -21,6 +21,26 @@ class PageController extends Controller
 
   public function updates(Request $reqest)
   {
-    return $reqest->text;
+    $host = Config::get('services.telegram.host');
+    $token = Config::get('services.telegram.token');
+
+    $inlineQueryId = $reqest->id;
+    $msg = $reqest->query;
+
+    if ($msg === 'hi') {
+      $client = new \GuzzleHttp\Client();
+
+      $res = $client->request('POST', $host . $token . '/answerInlineQuery', [
+        'inline_query_id' => $inlineQueryId,
+        'results' => [
+          'type'      => 'photo',
+          'id'        => '1',
+          'photo_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpg',
+          'thumb_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpg'
+        ]
+      ]);
+
+      $res->getStatusCode();
+    }
   }
 }

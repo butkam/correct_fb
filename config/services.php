@@ -35,4 +35,9 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'telegram' => [
+        'host'  => 'https://api.telegram.org/',
+        'token' => 'bot229717555:AAHua25azV9i02xZzuojtEmGYW13rOaYgV0',
+    ],
+
 ];
