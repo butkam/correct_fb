@@ -25,7 +25,7 @@ class PageController extends Controller
     $token = Config::get('services.telegram.token');
 
     $inlineQueryId = $reqest->id;
-    $msg = $reqest->query;
+    // $msg = $reqest->query;
 
     $photoQuery = [
       'type'      => 'photo',
