@@ -11,10 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PageController@home');
+Route::get('/bot', 'PageController@bot');
 
-Route::get('webhook', function () {
-    return view('webhook');
-});
+Route::post('/bot/ad6a892e0b5db8cc2cfc31021e671d27', 'PageController@updates');

@@ -12,6 +12,6 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        //
+        '/bot/ad6a892e0b5db8cc2cfc31021e671d27'
     ];
 }
