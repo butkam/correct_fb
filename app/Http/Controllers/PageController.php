@@ -27,20 +27,18 @@ class PageController extends Controller
     $inlineQueryId = $reqest->id;
     $msg = $reqest->query;
 
-    if ($msg === 'hi') {
-      $client = new \GuzzleHttp\Client();
+    $client = new \GuzzleHttp\Client();
 
-      $res = $client->request('POST', $host . $token . '/answerInlineQuery', [
-        'inline_query_id' => $inlineQueryId,
-        'results' => [
-          'type'      => 'photo',
-          'id'        => '1',
-          'photo_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpg',
-          'thumb_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpg'
-        ]
-      ]);
+    $res = $client->request('POST', $host . $token . '/answerInlineQuery', [
+      'inline_query_id' => $inlineQueryId,
+      'results' => [
+        'type'      => 'photo',
+        'id'        => '1',
+        'photo_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpg',
+        'thumb_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpg'
+      ]
+    ]);
 
-      $res->getStatusCode();
-    }
+    // return $res->getStatusCode();
   }
 }
