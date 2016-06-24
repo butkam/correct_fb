@@ -25,24 +25,24 @@ class PageController extends Controller
     $token = Config::get('services.telegram.token');
 
     $inlineQueryId = $reqest->all();
-    return $reqest->all();
+    return error_log(var_export($reqest->all(), 1));;
 
-    // $msg = $reqest->query;
+    $msg = $reqest->query;
 
-    // $photoQuery = [
-    //   'type'      => 'photo',
-    //   'id'        => '1',
-    //   'photo_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpg',
-    //   'thumb_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpg'
-    // ];
-    //
-    // $client = new \GuzzleHttp\Client();
-    //
-    // $res = $client->request('POST', $host . $token . '/answerInlineQuery', [
-    //   'inline_query_id' => $inlineQueryId,
-    //   'results' => json_encode($photoQuery),
-    // ]);
+    $photoQuery = [
+      'type'      => 'photo',
+      'id'        => '1',
+      'photo_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpg',
+      'thumb_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpg'
+    ];
 
-    // return $res->getStatusCode();
+    $client = new \GuzzleHttp\Client();
+
+    $res = $client->request('POST', $host . $token . '/answerInlineQuery', [
+      'inline_query_id' => $inlineQueryId,
+      'results' => json_encode($photoQuery),
+    ]);
+
+    return $res->getStatusCode();
   }
 }
