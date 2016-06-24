@@ -30,6 +30,8 @@ class PageController extends Controller
     $msg = $reqest->inline_query['id'];
     $inlineQueryId = $reqest->inline_query['query'];
 
+    return error_log(var_export($msg, 1));
+
     $photoQuery = [
       'type'      => 'photo',
       'id'        => '2',
@@ -43,7 +45,5 @@ class PageController extends Controller
       'inline_query_id' => $inlineQueryId,
       'results' => json_encode($photoQuery),
     ]);
-
-    return $res->getStatusCode();
   }
 }
