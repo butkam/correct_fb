@@ -26,7 +26,7 @@ class PageController extends Controller
 
     $inlineQueryId = $reqest->inline_query['id'];
     $msg = $reqest->inline_query['query'];
-    $queryUniqId = uniqid($inlineQueryId, true);
+    $queryUniqId = base64_encode(uniqid($inlineQueryId, true));
 
     // return error_log(var_export($msg, 1));
 
