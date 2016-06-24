@@ -21,25 +21,29 @@ class PageController extends Controller
 
   public function updates(Request $reqest)
   {
-    $host = Config::get('services.telegram.host');
-    $token = Config::get('services.telegram.token');
-
     $inlineQueryId = $reqest->inline_query['id'];
     $msg = $reqest->inline_query['query'];
     $queryUniqId = base64_encode(uniqid($inlineQueryId, true));
 
     // return error_log(var_export($msg, 1));
 
-    $client = new \GuzzleHttp\Client();
+    $this->post(
+      '/answerInlineQuery', [
+        'inline_query_id' => $inlineQueryId,
+        'results' => [
+          'type'      => 'photo',
+          'id'        => $queryUniqId,
+          'photo_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpeg',
+          'thumb_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpeg'
+    ]]);
+  }
 
-    $res = $client->request('POST', $host . $token . '/answerInlineQuery', array(
-      'inline_query_id' => $inlineQueryId,
-      'results' => array(
-        'type'      => 'photo',
-        'id'        => $queryUniqId,
-        'photo_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpeg',
-        'thumb_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpeg'
-      )
-    ));
+  public function post($method, $body)
+  {
+    $host = Config::get('services.telegram.host');
+    $token = Config::get('services.telegram.token');
+
+    $client = new \GuzzleHttp\Client();
+    $res = $client->request('POST', $host . $token . $method, $body);
   }
 }
