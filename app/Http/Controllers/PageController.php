@@ -29,7 +29,7 @@ class PageController extends Controller
     error_log(var_export($inlineQueryId, 1));
 
     $this->post(
-      '/answerInlineQuery', [
+      'answerInlineQuery', [
         'inline_query_id' => $inlineQueryId,
         'results' => [
           'type'      => 'photo',
@@ -45,8 +45,8 @@ class PageController extends Controller
     $host = Config::get('services.telegram.host');
     $token = Config::get('services.telegram.token');
 
-    $client = new \GuzzleHttp\Client([ 'base_uri' => $host . $token ]);
-    $client->post($method, json_encode($parameters));
+    $client = new \GuzzleHttp\Client([ 'base_uri' => $host . $token . '/' ]);
+    $client->request('POST', $method, json_encode($parameters));
 
     error_log(var_export($parameters, 1));
     error_log(var_export(json_encode($parameters), 1));
