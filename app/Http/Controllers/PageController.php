@@ -41,12 +41,7 @@ class PageController extends Controller
 
     $res = $client->request('POST', $host . $token . '/answerInlineQuery', [
       'inline_query_id' => $inlineQueryId,
-      'results' => [
-        'type'      => 'photo',
-        'id'        => $queryUniqId,
-        'photo_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpeg',
-        'thumb_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpeg'
-      ]
+      'results' => serialize($photoQuery),
     ]);
   }
 }
