@@ -28,15 +28,20 @@ class PageController extends Controller
     error_log(var_export($msg, 1));
     error_log(var_export($inlineQueryId, 1));
 
+    // $this->post(
+    //   'answerInlineQuery', [
+    //     'inline_query_id' => $inlineQueryId,
+    //     'results' => [
+    //       'type'      => 'photo',
+    //       'id'        => $queryUniqId,
+    //       'photo_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpeg',
+    //       'thumb_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpeg'
+    // ]]);
+
     $this->post(
-      'answerInlineQuery', [
-        'inline_query_id' => $inlineQueryId,
-        'results' => [
-          'type'      => 'photo',
-          'id'        => $queryUniqId,
-          'photo_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpeg',
-          'thumb_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpeg'
-    ]]);
+      'getMe',
+      []
+    );
   }
 
   public function post($method, $parameters)
