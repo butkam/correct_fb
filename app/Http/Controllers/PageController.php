@@ -31,6 +31,15 @@ class PageController extends Controller
     // return error_log(var_export($msg, 1));
 
     $photoQuery = [
+      'type'      => 'photo',
+      'id'        => $queryUniqId,
+      'photo_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpeg',
+      'thumb_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpeg'
+    ];
+
+    $client = new \GuzzleHttp\Client();
+
+    $res = $client->request('POST', $host . $token . '/answerInlineQuery', [
       'inline_query_id' => $inlineQueryId,
       'results' => [
         'type'      => 'photo',
@@ -38,14 +47,6 @@ class PageController extends Controller
         'photo_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpeg',
         'thumb_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpeg'
       ]
-    ];
-
-    $client = new \GuzzleHttp\Client();
-
-    $res = $client->request(
-      'POST',
-      $host . $token . '/answerInlineQuery',
-      json_encode($photoQuery)
-    );
+    ]);
   }
 }
