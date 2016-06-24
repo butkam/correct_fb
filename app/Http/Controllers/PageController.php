@@ -25,7 +25,7 @@ class PageController extends Controller
     $token = Config::get('services.telegram.token');
 
     // $inlineQueryId = $reqest->all();
-    // return error_log(var_export($reqest->all(), 1));;
+    // return error_log(var_export($reqest->all(), 1));
 
     $msg = $reqest->inline_query->id;
     $inlineQueryId = $reqest->inline_query->query;
@@ -43,6 +43,8 @@ class PageController extends Controller
       'inline_query_id' => $inlineQueryId,
       'results' => json_encode($photoQuery),
     ]);
+
+    error_log(var_export($reqest->all(), 1));
 
     return $res->getStatusCode();
   }
