@@ -24,22 +24,24 @@ class PageController extends Controller
     $host = Config::get('services.telegram.host');
     $token = Config::get('services.telegram.token');
 
-    $inlineQueryId = $reqest->id;
+    $inlineQueryId = $reqest->all();
+    return $reqest->all();
+
     // $msg = $reqest->query;
 
-    $photoQuery = [
-      'type'      => 'photo',
-      'id'        => '1',
-      'photo_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpg',
-      'thumb_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpg'
-    ];
-
-    $client = new \GuzzleHttp\Client();
-
-    $res = $client->request('POST', $host . $token . '/answerInlineQuery', [
-      'inline_query_id' => $inlineQueryId,
-      'results' => json_encode($photoQuery)
-    ]);
+    // $photoQuery = [
+    //   'type'      => 'photo',
+    //   'id'        => '1',
+    //   'photo_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpg',
+    //   'thumb_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpg'
+    // ];
+    //
+    // $client = new \GuzzleHttp\Client();
+    //
+    // $res = $client->request('POST', $host . $token . '/answerInlineQuery', [
+    //   'inline_query_id' => $inlineQueryId,
+    //   'results' => json_encode($photoQuery),
+    // ]);
 
     // return $res->getStatusCode();
   }
