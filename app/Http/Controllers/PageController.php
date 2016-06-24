@@ -33,8 +33,8 @@ class PageController extends Controller
     $photoQuery = [
       'type'      => 'photo',
       'id'        => $queryUniqId,
-      'photo_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpg',
-      'thumb_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpg'
+      'photo_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpeg',
+      'thumb_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpeg'
     ];
 
     $client = new \GuzzleHttp\Client();
