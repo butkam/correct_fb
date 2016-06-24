@@ -41,6 +41,7 @@ class PageController extends Controller
 
   public function post($method, $parameters)
   {
+    error_log(var_export($method, 1));
     $host = Config::get('services.telegram.host');
     $token = Config::get('services.telegram.token');
 
