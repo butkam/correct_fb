@@ -24,14 +24,15 @@ class PageController extends Controller
     $host = Config::get('services.telegram.host');
     $token = Config::get('services.telegram.token');
 
-    $inlineQueryId = $reqest->all();
-    return error_log(var_export($reqest->all(), 1));;
+    // $inlineQueryId = $reqest->all();
+    // return error_log(var_export($reqest->all(), 1));;
 
-    $msg = $reqest->query;
+    $msg = $reqest->inline_query->id;
+    $inlineQueryId = $reqest->inline_query->query;
 
     $photoQuery = [
       'type'      => 'photo',
-      'id'        => '1',
+      'id'        => '2',
       'photo_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpg',
       'thumb_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpg'
     ];
