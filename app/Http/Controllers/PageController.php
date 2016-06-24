@@ -44,9 +44,9 @@ class PageController extends Controller
     $host = Config::get('services.telegram.host');
     $token = Config::get('services.telegram.token');
 
-    $client = new \GuzzleHttp\Client();
-    $res = $client->request('POST', $host . $token . $method, json_encode($parameters));
+    $client = new \GuzzleHttp\Client([ 'base_uri' => $host . $token ]);
+    $client->post($method, $parameters);
 
-    return error_log(var_export($res, 1));
+    // return error_log(var_export($res, 1));
   }
 }
