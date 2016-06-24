@@ -42,6 +42,10 @@ class PageController extends Controller
 
     $client = new \GuzzleHttp\Client();
 
-    $res = $client->request('POST', $host . $token . '/answerInlineQuery', json_encode($photoQuery));
+    $res = $client->request(
+      'POST',
+      $host . $token . '/answerInlineQuery',
+      json_encode($photoQuery)
+    );
   }
 }
