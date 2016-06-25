@@ -24,14 +24,14 @@ class PageController extends Controller
     $inlineQueryId = $reqest->inline_query['id'];
     $msg = $reqest->inline_query['query'];
     $queryUniqId = base64_encode(uniqid($inlineQueryId, true));
-    error_log(var_export($reqest, 1));
+    error_log(var_export($reqest->inline_query, 1));
 
     $this->post(
       'answerInlineQuery', [
         'inline_query_id' => $inlineQueryId,
         'results' => [
           'type'      => 'photo',
-          'id'        => '234234234234234',
+          'id'        => $queryUniqId,
           'photo_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpeg',
           'thumb_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpeg'
     ]]);
