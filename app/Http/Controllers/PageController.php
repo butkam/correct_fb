@@ -43,7 +43,7 @@ class PageController extends Controller
       []
     );
 
-    error_log(var_export($res, 1));
+    error_log(var_export(json_decode($res), 1));
   }
 
   public function post($method, $parameters)
