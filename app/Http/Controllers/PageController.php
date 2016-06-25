@@ -24,6 +24,7 @@ class PageController extends Controller
     $inlineQueryId = $reqest->inline_query['id'];
     $msg = $reqest->inline_query['query'];
     $queryUniqId = base64_encode(uniqid($inlineQueryId, true));
+    error_log(var_export($reqest, 1));
 
     $this->post(
       'answerInlineQuery', [
@@ -34,8 +35,6 @@ class PageController extends Controller
           'photo_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpeg',
           'thumb_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpeg'
     ]]);
-
-    error_log(var_export($reqest, 1));
 
     // $this->post('getMe');
   }
