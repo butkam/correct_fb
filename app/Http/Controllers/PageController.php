@@ -35,6 +35,8 @@ class PageController extends Controller
           'thumb_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpeg'
     ]]);
 
+    error_log(var_export($reqest, 1));
+
     // $this->post('getMe');
   }
 
