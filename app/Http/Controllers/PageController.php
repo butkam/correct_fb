@@ -30,18 +30,15 @@ class PageController extends Controller
         'inline_query_id' => $inlineQueryId,
         'results' => [
           'type'      => 'photo',
-          'id'        => $queryUniqId,
+          'id'        => '234234234234234',
           'photo_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpeg',
           'thumb_url' => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpeg'
     ]]);
 
-    // $this->post(
-    //   'getMe',
-    //   []
-    // );
+    // $this->post('getMe');
   }
 
-  public function post($method, $parameters)
+  public function post($method, $parameters = null)
   {
     error_log(var_export($method, 1));
     $host = Config::get('services.telegram.host');
