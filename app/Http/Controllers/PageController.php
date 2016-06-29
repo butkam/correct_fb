@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use GuzzleHttp\Client;
 use Config;
 
 class PageController extends Controller
@@ -26,7 +27,7 @@ class PageController extends Controller
     $queryUniqId = uniqid($inlineQueryId, true);
 
     if ($reqest->inline_query) {
-      $this->get(
+      $this->post(
       'answerInlineQuery', [
         'json' => [
           'inline_query_id' => $inlineQueryId,
@@ -54,7 +55,7 @@ class PageController extends Controller
       'timeout'  => 2.0,
     ]);
 
-    $response = $client->request('POST', $method, $parameters);
+    $response = $client->request('GET', $method, $parameters);
     error_log(var_export($response->getBody()->getContents(), 1));
   }
 }
