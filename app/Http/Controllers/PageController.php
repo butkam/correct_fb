@@ -48,8 +48,10 @@ class PageController extends Controller
 
     $this->post(
       'sendMessage', [
-        'chat_id' => $chatId,
-        'text'    => 'Привет, я ТекстБот!'
+        'json' => [
+          'chat_id' => $chatId,
+          'text'    => 'Привет, я ТекстБот!'
+        ]
       ]);
 
   }
