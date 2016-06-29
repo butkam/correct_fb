@@ -26,9 +26,8 @@ class PageController extends Controller
     $queryUniqId = uniqid($inlineQueryId, true);
 
     if ($reqest->inline_query) {
-      $this->post(
-      'answerInlineQuery',
-      [
+      $this->get(
+      'answerInlineQuery', [
         'json' => [
           'inline_query_id' => $inlineQueryId,
           'results' => [
