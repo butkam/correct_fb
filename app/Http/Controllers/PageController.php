@@ -56,7 +56,7 @@ class PageController extends Controller
       'timeout'  => 2.0,
     ]);
 
-    $response = $client->request('POST', $method, json_encode($parameters));
+    $response = $client->request('POST', $method, $parameters);
     error_log(var_export($response->getBody()->getContents(), 1));
   }
 }
