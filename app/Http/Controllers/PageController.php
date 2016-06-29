@@ -28,14 +28,15 @@ class PageController extends Controller
     if ($reqest->inline_query) {
       $this->post(
       'answerInlineQuery', [
-        'inline_query_id' => $inlineQueryId,
-        'results' => [
-          'type'          => 'document',
-          'id'            => $queryUniqId,
-          'title'         => 'Документ',
-          'document_url'  => 'https://dl.dropboxusercontent.com/u/4402725/stickers.pdf',
-          'mime_type'     => 'application/pdf'
-        ]]);
+        'form_params' => [
+          'inline_query_id' => $inlineQueryId,
+          'results' => [
+            'type'          => 'document',
+            'id'            => $queryUniqId,
+            'title'         => 'Документ',
+            'document_url'  => 'https://dl.dropboxusercontent.com/u/4402725/stickers.pdf',
+            'mime_type'     => 'application/pdf'
+        ]]]);
     }
 
     // $this->post('getMe');
@@ -51,7 +52,7 @@ class PageController extends Controller
       'timeout'  => 2.0,
     ]);
 
-    $response = $client->request('POST', $method, urlencode($parameters));
+    $response = $client->request('POST', $method, json_encode($parameters));
     error_log(var_export($response->getBody()->getContents(), 1));
   }
 }
