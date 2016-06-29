@@ -49,7 +49,7 @@ class PageController extends Controller
 
     // $this->post('getMe');
 
-    if (strpos($text, '/start') === 0) {
+    if (strpos('/start', $text) === 0) {
       $this->post(
       'sendMessage', [
         'json' => [
