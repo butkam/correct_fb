@@ -26,7 +26,7 @@ class PageController extends Controller
     $queryUniqId = uniqid($inlineQueryId, true);
 
     if ($reqest->inline_query) {
-      $this->post([
+      $this->post(
       'answerInlineQuery', [
         'inline_query_id' => $inlineQueryId,
         'results' => [
@@ -35,7 +35,7 @@ class PageController extends Controller
           'title'         => 'Документ',
           'document_url'  => 'https://dl.dropboxusercontent.com/u/4402725/stickers.pdf',
           'mime_type'     => 'application/pdf'
-        ]]]);
+        ]]);
     }
 
     // $this->post('getMe');
@@ -43,7 +43,6 @@ class PageController extends Controller
 
   public function post($method, $parameters = null)
   {
-    error_log(var_export($method, 1));
     $host = Config::get('services.telegram.host');
     $token = Config::get('services.telegram.token');
 
@@ -51,7 +50,9 @@ class PageController extends Controller
       'base_uri' => $host . $token . '/',
       'timeout'  => 2.0,
     ]);
-
+    error_log(var_export($host, 1));
+    error_log(var_export($token, 1));
+    error_log(var_export($parameters, 1));
     $response = $client->request('POST', $method, json_encode($parameters));
     error_log(var_export($response->getBody()->getContents(), 1));
   }
