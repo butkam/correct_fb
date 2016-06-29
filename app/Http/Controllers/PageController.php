@@ -26,21 +26,20 @@ class PageController extends Controller
     $queryUniqId = uniqid($inlineQueryId, true);
     // error_log(var_export($reqest->inline_query, 1));
 
-    if ($reqest->inline_query) {
-      error_log(var_export('true', 1));
-      $this->post(
-      'answerInlineQuery', [
-        'inline_query_id' => $inlineQueryId,
-        'results' => [
-          'type'          => 'document',
-          'id'            => $queryUniqId,
-          'title'         => 'Документ',
-          'document_url'  => 'https://dl.dropboxusercontent.com/u/4402725/stickers.pdf',
-          'mime_type'     => 'application/pdf'
-        ]]);
-    }
+    // if ($reqest->inline_query) {
+    //   $this->post(
+    //   'answerInlineQuery', [
+    //     'inline_query_id' => $inlineQueryId,
+    //     'results' => [
+    //       'type'          => 'document',
+    //       'id'            => $queryUniqId,
+    //       'title'         => 'Документ',
+    //       'document_url'  => 'https://dl.dropboxusercontent.com/u/4402725/stickers.pdf',
+    //       'mime_type'     => 'application/pdf'
+    //     ]]);
+    // }
 
-    // $this->post('getMe');
+    $this->post('getMe');
   }
 
   public function post($method, $parameters = null)
@@ -50,7 +49,8 @@ class PageController extends Controller
     $token = Config::get('services.telegram.token');
 
     $client = new \GuzzleHttp\Client([ 'base_uri' => $host . $token . '/' ]);
-    $res = $client->request('POST', $method, $parameters);
+
+    $res = $client->request('POST', $method);
 
     error_log(var_dump($res, 1));
     // var_dump($res->getBody()->getContents());
