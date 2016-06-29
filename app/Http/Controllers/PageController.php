@@ -24,7 +24,6 @@ class PageController extends Controller
     $inlineQueryId = $reqest->inline_query['id'];
     $msg = $reqest->inline_query['query'];
     $queryUniqId = uniqid($inlineQueryId, true);
-    // error_log(var_export($reqest->inline_query, 1));
 
     if ($reqest->inline_query) {
       $this->post([
@@ -44,7 +43,6 @@ class PageController extends Controller
 
   public function post($method, $parameters = null)
   {
-    error_log(var_export($method, 1));
     $host = Config::get('services.telegram.host');
     $token = Config::get('services.telegram.token');
 
@@ -55,7 +53,5 @@ class PageController extends Controller
 
     $response = $client->request('POST', $method, json_encode($parameters));
     error_log(var_export($response->getBody()->getContents(), 1));
-
-    // var_dump($res->getBody()->getContents());
   }
 }
