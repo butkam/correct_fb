@@ -54,7 +54,7 @@ class PageController extends Controller
     ]);
 
     // $response = $client->request('POST', $method, $parameters);
-    error_log(var_export('true', 1));
+    error_log(var_export($client, 1));
 
     // var_dump($res->getBody()->getContents());
   }
