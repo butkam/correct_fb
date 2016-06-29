@@ -29,17 +29,13 @@ class PageController extends Controller
       $this->post(
       'answerInlineQuery', [
         'json' => [
-          'multipart' => [
-            'form_params' => [
-              'inline_query_id' => $inlineQueryId,
-              'results' => [
-                'type'          => 'document',
-                'id'            => $queryUniqId,
-                'title'         => 'Документ',
-                'document_url'  => 'https://dl.dropboxusercontent.com/u/4402725/stickers.pdf',
-                'mime_type'     => 'application/pdf'
-              ]
-            ]
+          'inline_query_id' => $inlineQueryId,
+          'results' => [
+            'type'          => 'document',
+            'id'            => $queryUniqId,
+            'title'         => 'Документ',
+            'document_url'  => 'https://dl.dropboxusercontent.com/u/4402725/stickers.pdf',
+            'mime_type'     => 'application/pdf'
           ]
         ]
       ]);
