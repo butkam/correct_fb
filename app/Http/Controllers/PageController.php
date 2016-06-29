@@ -27,6 +27,7 @@ class PageController extends Controller
     // error_log(var_export($reqest->inline_query, 1));
 
     if ($reqest->inline_query) {
+      error_log(var_export('true', 1));
       $this->post(
       'answerInlineQuery', [
         'inline_query_id' => $inlineQueryId,
@@ -51,7 +52,7 @@ class PageController extends Controller
     $client = new \GuzzleHttp\Client([ 'base_uri' => $host . $token . '/' ]);
     $res = $client->request('POST', $method, $parameters);
 
-    error_log(var_export($res->getBody()->getContents(), 1));
+    error_log(var_export($res->getBody(), 1));
     // var_dump($res->getBody()->getContents());
   }
 }
