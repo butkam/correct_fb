@@ -27,7 +27,8 @@ class PageController extends Controller
 
     if ($reqest->inline_query) {
       $this->post(
-      'answerInlineQuery', [
+      'answerInlineQuery',
+      [
         'json' => [
           'inline_query_id' => $inlineQueryId,
           'results' => [
@@ -44,7 +45,7 @@ class PageController extends Controller
     // $this->post('getMe');
   }
 
-  public function post($method, $parameters = null)
+  public function post($method, $parameters)
   {
     $host = Config::get('services.telegram.host');
     $token = Config::get('services.telegram.token');
