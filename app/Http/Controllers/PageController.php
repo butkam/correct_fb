@@ -52,7 +52,7 @@ class PageController extends Controller
 
     $res = $client->request('POST', $method);
 
-    error_log(var_dump($res, 1));
+    error_log(var_dump($res->getBody()->getContents(), 1));
     // var_dump($res->getBody()->getContents());
   }
 }
