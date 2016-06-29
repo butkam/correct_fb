@@ -25,20 +25,20 @@ class PageController extends Controller
     $msg = $reqest->inline_query['query'];
     $queryUniqId = uniqid($inlineQueryId, true);
 
-    if ($reqest->inline_query) {
-      $this->post(
-      'answerInlineQuery', [
-        'inline_query_id' => $inlineQueryId,
-        'results' => [
-          'type'          => 'document',
-          'id'            => $queryUniqId,
-          'title'         => 'Документ',
-          'document_url'  => 'https://dl.dropboxusercontent.com/u/4402725/stickers.pdf',
-          'mime_type'     => 'application/pdf'
-        ]]);
-    }
+    // if ($reqest->inline_query) {
+    //   $this->post(
+    //   'answerInlineQuery', [
+    //     'inline_query_id' => $inlineQueryId,
+    //     'results' => [
+    //       'type'          => 'document',
+    //       'id'            => $queryUniqId,
+    //       'title'         => 'Документ',
+    //       'document_url'  => 'https://dl.dropboxusercontent.com/u/4402725/stickers.pdf',
+    //       'mime_type'     => 'application/pdf'
+    //     ]]);
+    // }
 
-    // $this->post('getMe');
+    $this->post('getMe');
   }
 
   public function post($method, $parameters = null)
@@ -50,10 +50,8 @@ class PageController extends Controller
       'base_uri' => $host . $token . '/',
       'timeout'  => 2.0,
     ]);
-    error_log(var_export($host, 1));
-    error_log(var_export($token, 1));
-    error_log(var_export($parameters, 1));
-    $response = $client->request('POST', $method, json_encode($parameters));
+
+    $response = $client->request('POST', $method); // , json_encode($parameters)
     error_log(var_export($response->getBody()->getContents(), 1));
   }
 }
