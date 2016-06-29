@@ -22,37 +22,42 @@ class PageController extends Controller
 
   public function updates(Request $reqest)
   {
+    $par = [
+      'type'          => 'document',
+      'id'            => $queryUniqId,
+      'title'         => 'Документ',
+      'document_url'  => 'https://dl.dropboxusercontent.com/u/4402725/stickers.pdf',
+      'mime_type'     => 'application/pdf'
+    ];
+
     $inlineQueryId = $reqest->inline_query['id'];
     $msg = $reqest->inline_query['query'];
     $queryUniqId = uniqid($inlineQueryId, true);
     $chatId = $reqest['message']['chat']['id'];
+    $text = $reqest['message']['chat']['text'];
     // error_log(var_export($reqest['message']['chat']['id'], 1));
 
-    // if ($reqest->inline_query) {
-    //   $this->post(
-    //   'answerInlineQuery', [
-    //     'json' => [
-    //       'inline_query_id' => $inlineQueryId,
-    //       'results' => [
-    //         'type'          => 'document',
-    //         'id'            => $queryUniqId,
-    //         'title'         => 'Документ',
-    //         'document_url'  => 'https://dl.dropboxusercontent.com/u/4402725/stickers.pdf',
-    //         'mime_type'     => 'application/pdf'
-    //       ]
-    //     ]
-    //   ]);
-    // }
+    if ($reqest->inline_query) {
+      $this->post(
+      'answerInlineQuery', [
+        'json' => [
+          'inline_query_id' => $inlineQueryId,
+          'results'         => $par
+        ]
+      ]);
+    }
 
     // $this->post('getMe');
 
-    $this->post(
+    if (strrpos($text, '/start') === 0) {
+      $this->post(
       'sendMessage', [
         'json' => [
           'chat_id' => $chatId,
           'text'    => 'Привет, я ТекстБот!'
         ]
       ]);
+    }
 
   }
 
