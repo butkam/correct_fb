@@ -25,7 +25,8 @@ class PageController extends Controller
     $inlineQueryId = $reqest->inline_query['id'];
     $msg = $reqest->inline_query['query'];
     $queryUniqId = uniqid($inlineQueryId, true);
-    error_log(var_export($reqest['message']['chat']['id'], 1));
+    $chatId = $reqest['message']['chat']['id'];
+    // error_log(var_export($reqest['message']['chat']['id'], 1));
 
     // if ($reqest->inline_query) {
     //   $this->post(
@@ -45,11 +46,11 @@ class PageController extends Controller
 
     // $this->post('getMe');
 
-    // $this->post(
-    //   'sendMessage', [
-    //     'chat_id' => $chatId,
-    //     'text'    => 'Привет, я ТекстБот!'
-    //   ]);
+    $this->post(
+      'sendMessage', [
+        'chat_id' => $chatId,
+        'text'    => 'Привет, я ТекстБот!'
+      ]);
 
   }
 
