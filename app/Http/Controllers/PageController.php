@@ -51,8 +51,8 @@ class PageController extends Controller
     $client = new \GuzzleHttp\Client([ 'base_uri' => $host . $token . '/' ]);
 
     $client->request('POST', $method, $parameters);
+    error_log(var_dump($parameters->getBody()->getContents(), 1));
 
-    error_log(var_dump($response->getBody()->getContents(), 1));
     // var_dump($res->getBody()->getContents());
   }
 }
