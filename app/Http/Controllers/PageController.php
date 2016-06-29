@@ -53,7 +53,7 @@ class PageController extends Controller
       'timeout'  => 2.0,
     ]);
 
-    $response = $client->request('POST', $method, $parameters);
+    // $response = $client->request('POST', $method, $parameters);
     error_log(var_dump('true', 1));
 
     // var_dump($res->getBody()->getContents());
