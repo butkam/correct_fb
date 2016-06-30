@@ -22,20 +22,25 @@ class PageController extends Controller
 
   public function updates(Request $reqest)
   {
-
     $inlineQueryId = $reqest->inline_query['id'];
     $msg = $reqest->inline_query['query'];
-    $queryUniqId = uniqid($inlineQueryId, true);
     $chatId = $reqest['message']['chat']['id'];
     $text = $reqest['message']['text'];
 
     $par = [];
     $par[] = [
       'type'          => 'photo',
-      'id'            => $queryUniqId,
+      'id'            => uniqid($inlineQueryId, true),
       'photo_url'     => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpeg',
       'thumb_url'     => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpeg'
     ];
+    $par[] = [
+      'type'          => 'photo',
+      'id'            => uniqid($inlineQueryId, true),
+      'photo_url'     => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpeg',
+      'thumb_url'     => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpeg'
+    ];
+    ;
 
     if ($reqest->inline_query) {
       $this->post(
@@ -45,8 +50,6 @@ class PageController extends Controller
           'results'         => $par
         ]]);
     }
-
-    // $this->post('getMe');
 
     if (strpos($text, '/start') === 0) {
       $this->post(
