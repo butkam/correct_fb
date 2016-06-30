@@ -32,7 +32,7 @@ class PageController extends Controller
 
     $par = [
       'type'          => 'document',
-      'id'            => '44',
+      'id'            => $queryUniqId,
       'title'         => 'Документ',
       'document_url'  => 'https://dl.dropboxusercontent.com/u/4402725/stickers.pdf',
       'mime_type'     => 'application/pdf'
@@ -44,8 +44,7 @@ class PageController extends Controller
         'json' => [
           'inline_query_id' => $inlineQueryId,
           'results'         => $par
-        ]
-      ]);
+        ]]);
     }
 
     // $this->post('getMe');
