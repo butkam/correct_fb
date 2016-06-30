@@ -22,13 +22,6 @@ class PageController extends Controller
 
   public function updates(Request $reqest)
   {
-    // $par = [
-    //   'type'          => 'document',
-    //   'id'            => $queryUniqId,
-    //   'title'         => 'Документ',
-    //   'document_url'  => 'https://dl.dropboxusercontent.com/u/4402725/stickers.pdf',
-    //   'mime_type'     => 'application/pdf'
-    // ];
 
     $inlineQueryId = $reqest->inline_query['id'];
     $msg = $reqest->inline_query['query'];
@@ -37,6 +30,14 @@ class PageController extends Controller
     $text = $reqest['message']['text'];
     error_log(var_export($reqest['message']['text'], 1));
 
+    $par = [
+      'type'          => 'document',
+      'id'            => $queryUniqId,
+      'title'         => 'Документ',
+      'document_url'  => 'https://dl.dropboxusercontent.com/u/4402725/stickers.pdf',
+      'mime_type'     => 'application/pdf'
+    ];
+    
     // if ($reqest->inline_query) {
     //   $this->post(
     //   'answerInlineQuery', [
