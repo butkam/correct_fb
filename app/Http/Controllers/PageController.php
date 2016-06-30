@@ -43,7 +43,9 @@ class PageController extends Controller
       'answerInlineQuery', [
         'json' => [
           'inline_query_id' => $inlineQueryId,
-          'results'         => [ json_encode($par) ]
+          'results'         => [
+            'json' => $par
+            ]
         ]
       ]);
     }
