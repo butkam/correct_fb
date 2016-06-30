@@ -22,30 +22,30 @@ class PageController extends Controller
 
   public function updates(Request $reqest)
   {
-    $par = [
-      'type'          => 'document',
-      'id'            => $queryUniqId,
-      'title'         => 'Документ',
-      'document_url'  => 'https://dl.dropboxusercontent.com/u/4402725/stickers.pdf',
-      'mime_type'     => 'application/pdf'
-    ];
+    // $par = [
+    //   'type'          => 'document',
+    //   'id'            => $queryUniqId,
+    //   'title'         => 'Документ',
+    //   'document_url'  => 'https://dl.dropboxusercontent.com/u/4402725/stickers.pdf',
+    //   'mime_type'     => 'application/pdf'
+    // ];
 
     $inlineQueryId = $reqest->inline_query['id'];
     $msg = $reqest->inline_query['query'];
     $queryUniqId = uniqid($inlineQueryId, true);
     $chatId = $reqest['message']['chat']['id'];
     $text = $reqest['message']['text'];
-    // error_log(var_export($reqest['message'], 1));
+    error_log(var_export($reqest['message']['text'], 1));
 
-    if ($reqest->inline_query) {
-      $this->post(
-      'answerInlineQuery', [
-        'json' => [
-          'inline_query_id' => $inlineQueryId,
-          'results'         => $par
-        ]
-      ]);
-    }
+    // if ($reqest->inline_query) {
+    //   $this->post(
+    //   'answerInlineQuery', [
+    //     'json' => [
+    //       'inline_query_id' => $inlineQueryId,
+    //       'results'         => $par
+    //     ]
+    //   ]);
+    // }
 
     // $this->post('getMe');
 
@@ -65,7 +65,7 @@ class PageController extends Controller
 
     $client = new \GuzzleHttp\Client([
       'base_uri' => $host . $token . '/',
-      'timeout'  => 2.0,
+      'timeout'  => 2.0
     ]);
 
     $response = $client->request('POST', $method, $parameters);
