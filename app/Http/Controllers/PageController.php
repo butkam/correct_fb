@@ -49,15 +49,13 @@ class PageController extends Controller
 
     // $this->post('getMe');
 
-    if (strpos('/start', $text) === 0) {
-      $this->post(
-      'sendMessage', [
-        'json' => [
-          'chat_id' => $chatId,
-          'text'    => 'Привет, я ТекстБот!'
-        ]
-      ]);
-    }
+    $this->post(
+    'sendMessage', [
+      'json' => [
+        'chat_id' => $chatId,
+        'text'    => 'Привет, я ТекстБот!'
+      ]
+    ]);
   }
 
   public function post($method, $parameters)
