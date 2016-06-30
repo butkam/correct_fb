@@ -37,16 +37,16 @@ class PageController extends Controller
       'document_url'  => 'https://dl.dropboxusercontent.com/u/4402725/stickers.pdf',
       'mime_type'     => 'application/pdf'
     ];
-    
-    // if ($reqest->inline_query) {
-    //   $this->post(
-    //   'answerInlineQuery', [
-    //     'json' => [
-    //       'inline_query_id' => $inlineQueryId,
-    //       'results'         => $par
-    //     ]
-    //   ]);
-    // }
+
+    if ($reqest->inline_query) {
+      $this->post(
+      'answerInlineQuery', [
+        'json' => [
+          'inline_query_id' => $inlineQueryId,
+          'results'         => $par
+        ]
+      ]);
+    }
 
     // $this->post('getMe');
 
