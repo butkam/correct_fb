@@ -31,11 +31,13 @@ class PageController extends Controller
     error_log(var_export($reqest['message']['text'], 1));
 
     $par = [
-      'type'          => 'document',
-      'id'            => $queryUniqId,
-      'title'         => 'Документ',
-      'document_url'  => 'https://dl.dropboxusercontent.com/u/4402725/stickers.pdf',
-      'mime_type'     => 'application/pdf'
+      'json' => [
+        'type'          => 'document',
+        'id'            => $queryUniqId,
+        'title'         => 'Документ',
+        'document_url'  => 'https://dl.dropboxusercontent.com/u/4402725/stickers.pdf',
+        'mime_type'     => 'application/pdf'
+      ]
     ];
 
     if ($reqest->inline_query) {
