@@ -30,7 +30,8 @@ class PageController extends Controller
     $text = $reqest['message']['text'];
     error_log(var_export($reqest['message']['text'], 1));
 
-    $par = [
+    $par = [];
+    $par[] = [
       'type'          => 'document',
       'id'            => $queryUniqId,
       'title'         => 'Документ',
