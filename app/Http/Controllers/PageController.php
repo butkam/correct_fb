@@ -33,7 +33,7 @@ class PageController extends Controller
     if ($reqest->inline_query) {
       $this->post(
       'answerInlineQuery', [
-        'multipart' => [
+        'json' => [
           'inline_query_id' => $inlineQueryId,
           'results'         => [
               'type'          => 'document',
@@ -41,9 +41,9 @@ class PageController extends Controller
               'title'         => 'Документ',
               'document_url'  => 'https://dl.dropboxusercontent.com/u/4402725/stickers.pdf',
               'mime_type'     => 'application/pdf'
-              ]
             ]
-          ]);
+          ]
+        ]);
     }
 
     // $this->post('getMe');
