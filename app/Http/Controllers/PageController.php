@@ -36,7 +36,6 @@ class PageController extends Controller
         'json' => [
           'inline_query_id' => $inlineQueryId,
           'results'         => [
-            'json' => [
               'type'          => 'document',
               'id'            => $queryUniqId,
               'title'         => 'Документ',
@@ -44,8 +43,7 @@ class PageController extends Controller
               'mime_type'     => 'application/pdf'
               ]
             ]
-          ]
-        ]);
+          ]);
     }
 
     // $this->post('getMe');
