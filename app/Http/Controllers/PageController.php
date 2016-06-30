@@ -33,7 +33,7 @@ class PageController extends Controller
     if ($reqest->inline_query) {
       $this->post(
       'answerInlineQuery', [
-        'json' => [
+        'multipart' => [
           'inline_query_id' => $inlineQueryId,
           'results'         => [
               'type'          => 'document',
