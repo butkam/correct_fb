@@ -35,7 +35,7 @@ class PageController extends Controller
     $queryUniqId = uniqid($inlineQueryId, true);
     $chatId = $reqest['message']['chat']['id'];
     $text = $reqest['message']['text'];
-    error_log(var_export($reqest['message']['text'], 1));
+    error_log(var_export($reqest['message'], 1));
 
     if ($reqest->inline_query) {
       $this->post(
