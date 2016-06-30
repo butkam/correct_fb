@@ -28,15 +28,13 @@ class PageController extends Controller
     $queryUniqId = uniqid($inlineQueryId, true);
     $chatId = $reqest['message']['chat']['id'];
     $text = $reqest['message']['text'];
-    error_log(var_export($reqest['message']['text'], 1));
 
     $par = [];
     $par[] = [
-      'type'          => 'document',
+      'type'          => 'photo',
       'id'            => $queryUniqId,
-      'title'         => 'Документ',
-      'document_url'  => 'https://dl.dropboxusercontent.com/u/4402725/stickers.pdf',
-      'mime_type'     => 'application/pdf'
+      'photo_url'     => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpeg',
+      'thumb_url'     => 'https://dl.dropboxusercontent.com/u/4402725/test_mag.jpeg'
     ];
 
     if ($reqest->inline_query) {
@@ -71,6 +69,5 @@ class PageController extends Controller
     ]);
 
     $response = $client->request('POST', $method, $parameters);
-    error_log(var_export($response->getBody()->getContents(), 1));
   }
 }
